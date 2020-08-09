@@ -1,6 +1,7 @@
 package me.wcy.music.activity;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -68,7 +69,7 @@ public class SearchMusicActivity extends BaseActivity implements SearchView.OnQu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search_music, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.onActionViewExpanded();
         searchView.setQueryHint(getString(R.string.search_tips));

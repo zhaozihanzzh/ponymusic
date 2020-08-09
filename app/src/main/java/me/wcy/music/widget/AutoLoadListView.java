@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import me.wcy.music.R;
@@ -51,6 +52,12 @@ public class AutoLoadListView extends ListView implements AbsListView.OnScrollLi
     public void onLoadComplete() {
         Log.d(TAG, "onLoadComplete");
         mIsLoading = false;
+        if(getAdapter() == null) {
+            String[] empty = {};
+            setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, empty));
+            removeFooterView(vFooter);
+            setAdapter(null);
+        } else
         removeFooterView(vFooter);
     }
 

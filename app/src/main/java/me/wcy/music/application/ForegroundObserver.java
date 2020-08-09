@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import org.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat;
+import org.jraf.android.util.activitylifecyclecallbackscompat.ApplicationHelper;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 /**
  * Created by hzwangchenyan on 2017/9/20.
  */
-public class ForegroundObserver implements Application.ActivityLifecycleCallbacks {
+public class ForegroundObserver implements ActivityLifecycleCallbacksCompat {
     private static final String TAG = "ForegroundObserver";
     private static final long CHECK_TASK_DELAY = 500;
 
@@ -40,7 +43,7 @@ public class ForegroundObserver implements Application.ActivityLifecycleCallback
     }
 
     public static void init(Application application) {
-        application.registerActivityLifecycleCallbacks(getInstance());
+        ApplicationHelper.registerActivityLifecycleCallbacks(application, getInstance());
     }
 
     private static ForegroundObserver getInstance() {

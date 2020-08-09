@@ -9,6 +9,9 @@ import android.util.Log;
 
 import com.amap.api.location.AMapLocalWeatherLive;
 
+import org.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat;
+import org.jraf.android.util.activitylifecyclecallbackscompat.ApplicationHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +52,7 @@ public class AppCache {
         ScreenUtils.init(mContext);
         CrashHandler.getInstance().init();
         CoverLoader.get().init(mContext);
-        application.registerActivityLifecycleCallbacks(new ActivityLifecycle());
+        ApplicationHelper.registerActivityLifecycleCallbacks(application, new ActivityLifecycle());
     }
 
     public Context getContext() {
@@ -87,7 +90,7 @@ public class AppCache {
         mAMapLocalWeatherLive = aMapLocalWeatherLive;
     }
 
-    private class ActivityLifecycle implements Application.ActivityLifecycleCallbacks {
+    private class ActivityLifecycle implements ActivityLifecycleCallbacksCompat {
         private static final String TAG = "Activity";
 
         @Override

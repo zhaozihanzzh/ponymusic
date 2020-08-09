@@ -18,4 +18,9 @@
     <color name="grey_300_96p">#F5E0E0E0</color>
     <color name="grey_900">#212121</color>
     <color name="grey_900_96p">#F5212121</color>
+    <color name="lrc_normal_text_color">#9E9E9E</color>
+    <color name="lrc_current_text_color">#FF4081</color>
+    <color name="lrc_timeline_text_color">#F8BBD0</color>
+    <color name="lrc_timeline_color">#809E9E9E</color>
+    <color name="lrc_time_text_color">#809E9E9E</color>
 </resources>

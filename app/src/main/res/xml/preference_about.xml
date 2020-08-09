@@ -12,6 +12,10 @@
             android:key="star"
             android:summary="前往项目地址给个Star，鼓励作者"
             android:title="给我点赞" />
+        <Preference
+            android:key="port"
+            android:summary="@string/port_info"
+            android:title="@string/port_title" />
     </PreferenceCategory>
     <PreferenceCategory android:title="关于作者">
         <Preference

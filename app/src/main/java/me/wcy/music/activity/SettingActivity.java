@@ -4,8 +4,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.audiofx.AudioEffect;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.text.TextUtils;
 
 import com.hwangjr.rxbus.RxBus;
@@ -28,18 +28,19 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onServiceBound() {
         SettingFragment settingFragment = new SettingFragment();
-        getFragmentManager().beginTransaction().replace(R.id.ll_fragment_container, settingFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.ll_fragment_container, settingFragment).commit();
     }
 
-    public static class SettingFragment extends PreferenceFragment
+    public static class SettingFragment extends PreferenceFragmentCompat
             implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mSoundEffect;
         private Preference mFilterSize;
         private Preference mFilterTime;
 
+
+
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.preference_setting);
 
             mSoundEffect = findPreference(getString(R.string.setting_key_sound_effect));

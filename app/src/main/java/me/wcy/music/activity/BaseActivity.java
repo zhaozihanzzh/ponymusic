@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import org.jraf.android.util.activitylifecyclecallbackscompat.app.LifecycleDispatchActivity;
+
 import me.wcy.music.R;
 import me.wcy.music.service.PlayService;
 import me.wcy.music.storage.preference.Preferences;
@@ -34,7 +36,7 @@ import me.wcy.music.utils.binding.ViewBinder;
  * 如果继承本类，需要在 layout 中添加 {@link Toolbar} ，并将 AppTheme 继承 Theme.AppCompat.NoActionBar 。
  * Created by wcy on 2015/11/26.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends LifecycleDispatchActivity {
     protected Handler handler;
     protected PlayService playService;
     private ServiceConnection serviceConnection;
@@ -80,7 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void initView() {
         ViewBinder.bind(this);
 
-        Toolbar mToolbar = findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar)findViewById(R.id.toolbar);
         if (mToolbar == null) {
             throw new IllegalStateException("Layout is required to include a Toolbar with id 'toolbar'");
         }

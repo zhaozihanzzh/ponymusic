@@ -1,8 +1,7 @@
 package me.wcy.music.loader;
 
-import android.app.LoaderManager;
+import android.support.v4.app.LoaderManager;
 import android.content.Context;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
@@ -29,18 +28,24 @@ public class MusicLoaderCallback implements LoaderManager.LoaderCallbacks {
         this.musicList = new ArrayList<>();
     }
 
-    public Loader onCreateLoader(int id, Bundle args) {
+    public android.support.v4.content.Loader onCreateLoader(int id, Bundle args) {
         return new MusicCursorLoader(context);
     }
 
-    public void onLoadFinished(Loader var1, Object var2) {
+
+
+    @Override
+    public void onLoaderReset(android.support.v4.content.Loader loader) {
+
+    }
+
+    @Override
+    public void onLoadFinished(android.support.v4.content.Loader var1, Object var2) {
         this.onLoadFinished(var1, (Cursor) var2);
     }
 
-    public void onLoaderReset(Loader loader) {
-    }
 
-    public void onLoadFinished(Loader loader, Cursor data) {
+    public void onLoadFinished(android.support.v4.content.Loader loader, Cursor data) {
         if (data == null) {
             return;
         }

@@ -3,8 +3,8 @@ package me.wcy.music.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 
 import me.wcy.music.BuildConfig;
 import me.wcy.music.R;
@@ -16,20 +16,20 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        getFragmentManager().beginTransaction().replace(R.id.ll_fragment_container, new AboutFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.ll_fragment_container, new AboutFragment()).commit();
     }
 
-    public static class AboutFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
+    public static class AboutFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener {
         private Preference mVersion;
         private Preference mShare;
         private Preference mStar;
         private Preference mWeibo;
         private Preference mJianshu;
         private Preference mGithub;
+        private Preference mPort;
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.preference_about);
 
             mVersion = findPreference("version");
@@ -38,7 +38,7 @@ public class AboutActivity extends BaseActivity {
             mWeibo = findPreference("weibo");
             mJianshu = findPreference("jianshu");
             mGithub = findPreference("github");
-
+            mPort = findPreference("port");
             mVersion.setSummary("v " + BuildConfig.VERSION_NAME);
             setListener();
         }
@@ -49,6 +49,7 @@ public class AboutActivity extends BaseActivity {
             mWeibo.setOnPreferenceClickListener(this);
             mJianshu.setOnPreferenceClickListener(this);
             mGithub.setOnPreferenceClickListener(this);
+            mPort.setOnPreferenceClickListener(this);
         }
 
         @Override
@@ -61,6 +62,9 @@ public class AboutActivity extends BaseActivity {
                 return true;
             } else if (preference == mWeibo || preference == mJianshu || preference == mGithub) {
                 openUrl(preference.getSummary().toString());
+                return true;
+            } else if (preference == mPort) {
+                openUrl(mPort.getSummary().toString());
                 return true;
             }
             return false;

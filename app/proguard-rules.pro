@@ -2,8 +2,13 @@
 -dontwarn com.zhy.http.**
 -keep class com.zhy.http.** { *; }
 
--dontwarn okio.**
+# okhttp
 -dontwarn okhttp3.**
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okio.**
+-keep class okio.** { *; }
+
 -dontwarn org.blinkenlights.jid3.**
 
 -keep class android.support.** { *; }
@@ -23,7 +28,7 @@
 -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
     public static java.lang.String TABLENAME;
 }
--keep class **$Properties
+-keep class **$Properties { *; }
 # If you do not use SQLCipher:
 -dontwarn org.greenrobot.greendao.database.**
 # If you do not use Rx:
@@ -38,3 +43,8 @@
     @com.hwangjr.rxbus.annotation.Produce public *;
 }
 # RxBus end
+
+# NineOldAndroids
+-keep class com.nineoldandroids.** { *; }
+#-keepattributes Exceptions, InnerClasses, Signature, Deprecated, SourceFile, LineNumberTable, *Annotation*, EnclosingMethod
+-keep class me.wcy.music.model.** { *; }

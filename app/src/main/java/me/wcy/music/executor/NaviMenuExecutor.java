@@ -1,6 +1,7 @@
 package me.wcy.music.executor;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 
@@ -54,7 +55,16 @@ public class NaviMenuExecutor {
 
     private void nightMode() {
         Preferences.saveNightMode(!Preferences.isNightMode());
-        activity.recreate();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            activity.recreate();
+        } else {
+            Intent intent = activity.getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            activity.overridePendingTransition(0, 0);
+            android.content.Context c = activity.getApplication();
+            activity.finish();
+            c.startActivity(intent);
+        }
     }
 
     private void timerDialog() {

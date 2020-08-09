@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.Loader;
+import android.support.v4.content.Loader;
 import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,7 +95,7 @@ public class LocalMusicFragment extends BaseFragment implements AdapterView.OnIt
     }
 
     private void initLoader() {
-        loader = getActivity().getLoaderManager().initLoader(0, null, new MusicLoaderCallback(getContext(), value -> {
+        loader = ((FragmentActivity)getActivity()).getSupportLoaderManager().initLoader(0, null, new MusicLoaderCallback(getContext(), value -> {
             AppCache.get().getLocalMusicList().clear();
             AppCache.get().getLocalMusicList().addAll(value);
             lvLocalMusic.setVisibility(View.VISIBLE);

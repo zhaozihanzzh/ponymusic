@@ -15,11 +15,13 @@ import me.wcy.music.utils.ScreenUtils;
  */
 public class IndicatorLayout extends LinearLayout {
     public IndicatorLayout(Context context) {
-        this(context, null);
+        super(context);
+        init();
     }
 
     public IndicatorLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init();
     }
 
     public IndicatorLayout(Context context, AttributeSet attrs, int defStyleAttr) {

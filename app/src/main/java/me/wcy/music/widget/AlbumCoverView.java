@@ -1,6 +1,6 @@
 package me.wcy.music.widget;
 
-import android.animation.ValueAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

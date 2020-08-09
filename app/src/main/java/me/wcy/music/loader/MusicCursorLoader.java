@@ -1,7 +1,7 @@
 package me.wcy.music.loader;
 
 import android.content.Context;
-import android.content.CursorLoader;
+import android.support.v4.content.CursorLoader;
 import android.provider.MediaStore;
 
 public class MusicCursorLoader extends CursorLoader {

@@ -59,7 +59,7 @@ public class CoverLoader {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     return bitmap.getAllocationByteCount() / 1024;
                 } else {
-                    return bitmap.getByteCount() / 1024;
+                    return bitmap.getRowBytes() * bitmap.getHeight() / 1024;
                 }
             }
         };
